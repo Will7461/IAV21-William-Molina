@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Player's gravity")]
     public float gravity = -9.81f;
     /// <summary>
+    /// Player's push power to any rigidbody
+    /// </summary>
+    [Tooltip("Player's push power to any rigidbody")]
+    float pushPower = 2.0f;
+    /// <summary>
     /// CharacterController component of the player
     /// </summary>
     CharacterController controller;
@@ -59,6 +64,7 @@ public class PlayerController : MonoBehaviour
     /// Current player's speed
     /// </summary>
     float currentSpeed;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -84,4 +90,19 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        // We dont want to push objects below us or not having a rigidbody
+        if (body == null || body.isKinematic || hit.moveDirection.y < -0.3) return;
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, hit.moveDirection.y, hit.moveDirection.z);
+
+        // Apply the push
+        body.velocity = pushDir * pushPower;
+    }
 }
