@@ -20,10 +20,15 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Ground Layer Mask")]
     public LayerMask groundMask;
     /// <summary>
+    /// Player's sprint
+    /// </summary>
+    [Tooltip("Player's sprint")]
+    public float sprint = 12f;
+    /// <summary>
     /// Player's speed
     /// </summary>
     [Tooltip("Player's speed")]
-    public float speed = 12f;
+    public float speed = 10f;
     /// <summary>
     /// Player's jump height
     /// </summary>
@@ -46,12 +51,19 @@ public class PlayerController : MonoBehaviour
     /// Player velocity
     /// </summary>
     Vector3 velocity;
+    /// <summary>
+    /// Boolean to know if the player is touching the ground
+    /// </summary>
     bool isGrounded;
+    /// <summary>
+    /// Current player's speed
+    /// </summary>
+    float currentSpeed;
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        currentSpeed = speed;
     }
-
     
     void Update()
     {
@@ -63,8 +75,10 @@ public class PlayerController : MonoBehaviour
         z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-		controller.Move(move * speed * Time.deltaTime);
 
+        currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprint : speed;
+		controller.Move(move * currentSpeed * Time.deltaTime);
+        
         if (Input.GetButtonDown("Jump") && isGrounded) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
         velocity.y += gravity * Time.deltaTime;
