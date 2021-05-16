@@ -111,9 +111,9 @@ MonoBehaviour:
     name: Rocks_Round_m_01
   - gameObject: {fileID: 195346, guid: 2b17feabcfa782540ac917547c64adf5, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 10
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
-      m_RotationRangeMax: {x: 0, y: 0, z: 0}
+      m_RotationRangeMax: {x: 122.553185, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
       m_ScaleRangeMax: {x: 1, y: 1, z: 1}
       m_UniformScale: {x: 0.8, y: 3}
@@ -143,9 +143,9 @@ MonoBehaviour:
     name: Rock_Round_m_02
   - gameObject: {fileID: 188480, guid: 02c97ae925d1d3143b4280d6e3eca352, type: 3}
     settings:
-      m_Strength: 50
-      m_RotationRangeMin: {x: 0, y: 0, z: 0}
-      m_RotationRangeMax: {x: 0, y: 0, z: 0}
+      m_Strength: 10
+      m_RotationRangeMin: {x: 196.59575, y: 0, z: 0}
+      m_RotationRangeMax: {x: 360, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
       m_ScaleRangeMax: {x: 1, y: 1, z: 1}
       m_UniformScale: {x: 0.8, y: 3}
