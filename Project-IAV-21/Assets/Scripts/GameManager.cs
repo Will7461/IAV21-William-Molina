@@ -5,19 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject homePause;
+    public GameObject wildForestPause;
     public GameObject home;
-    public GameObject fox;
-    public GameObject chicken;
-    public struct AnimalInfo
-	{
-        string name;
-        Transform pos;
-        int life;
-	}
+    public GameObject[] animals;
 
     private bool gamePaused = false;
 
-    private List<AnimalInfo> animals;
+    private GameObject currentPause;
 
     private static GameManager _instance;
 
@@ -41,6 +36,7 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
         Cursor.visible = false;
+        currentPause = homePause;
 	}
 
 	private void Update()
@@ -51,16 +47,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-	public void AddAnimal(AnimalInfo aInfo)
-	{
-        animals.Add(aInfo);
-	}
-
-    public void ChangeScene(string name)
-	{
-        SceneManager.LoadSceneAsync(name);
-    }
-
     public void TogglePause()
 	{
         gamePaused = !gamePaused;
@@ -69,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void SetPause(bool p)
 	{
-        GameObject.FindGameObjectWithTag("UI").transform.Find("PauseMenu").gameObject.SetActive(p);
+        currentPause.SetActive(p);
         Cursor.lockState = p ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = p;
         Time.timeScale = p ? 0 : 1;
@@ -79,4 +65,20 @@ public class GameManager : MonoBehaviour
 	{
         Application.Quit();
 	}
+
+    public void GoToWildForest()
+	{
+        home.SetActive(false);
+        SceneManager.LoadScene("WildForest", LoadSceneMode.Additive);
+        TogglePause();
+        currentPause = wildForestPause;
+	}
+
+    public void GoToHome()
+    {
+        SceneManager.UnloadSceneAsync("WildForest");
+        home.SetActive(true);
+        TogglePause();
+        currentPause = homePause;
+    }
 }
