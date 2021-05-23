@@ -6,12 +6,10 @@ public class Billboard : MonoBehaviour
 {
     private Transform cam;
 
-	private void Start()
-	{
-		cam = GameObject.Find("Player").transform.GetChild(1);
-	}
 	void LateUpdate()
     {
+		cam = Camera.main.transform;
+		if (cam == null) return;
         transform.LookAt(transform.position + cam.forward);
     }
 }

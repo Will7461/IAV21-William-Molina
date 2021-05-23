@@ -195,11 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Food","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Target","value":{"$content":2,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Damage","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Damage","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
 --- !u!114 &1313792538512821229
 MonoBehaviour:
   m_ObjectHideFlags: 0
