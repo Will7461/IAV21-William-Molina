@@ -122,12 +122,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1304347120136530024}
   - component: {fileID: 3582535533758478880}
-  - component: {fileID: 3582535533758478881}
   - component: {fileID: 3582535533758478877}
   - component: {fileID: 3582535533758478878}
   - component: {fileID: 3582535533758478879}
   - component: {fileID: 3582535533758478883}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,19 +165,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &3582535533758478881
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302001349177441660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.5, z: 0.38}
-  m_Center: {x: 0, y: 0.27, z: 0.1}
 --- !u!114 &3582535533758478877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +244,7 @@ GameObject:
   - component: {fileID: 1299281596583043238}
   - component: {fileID: 1328352410662679112}
   - component: {fileID: 1315707038717965062}
+  - component: {fileID: 3970705685914736607}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -326,6 +313,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3970705685914736607
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302390337770860820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.5, z: 0.38}
+  m_Center: {x: 0, y: 0.27, z: -0.07}
 --- !u!1 &8081702125569277149
 GameObject:
   m_ObjectHideFlags: 0

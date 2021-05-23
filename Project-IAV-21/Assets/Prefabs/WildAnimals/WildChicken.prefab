@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 2719130933241354500}
   - component: {fileID: 2726071877729340394}
   - component: {fileID: 2736471151737539236}
+  - component: {fileID: 6545524503024585504}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -153,6 +154,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6545524503024585504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2713620585662105782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.5, z: 0.38}
+  m_Center: {x: 0, y: 0.27, z: -0.07}
 --- !u!1 &2714001255145178334
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,11 +178,10 @@ GameObject:
   - component: {fileID: 2711811687608144330}
   - component: {fileID: 435735912807859074}
   - component: {fileID: 785688219784905267}
-  - component: {fileID: 435735912807859075}
   - component: {fileID: -2251506415065378852}
   - component: {fileID: 435735912807859135}
   - component: {fileID: 435735912807859133}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WildChicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,19 +233,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 16
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &435735912807859075
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714001255145178334}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.5, z: 0.38}
-  m_Center: {x: 0, y: 0.27, z: 0.1}
 --- !u!114 &-2251506415065378852
 MonoBehaviour:
   m_ObjectHideFlags: 0

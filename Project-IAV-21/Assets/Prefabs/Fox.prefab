@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1308887541672674304}
   - component: {fileID: 1319248750267238710}
   - component: {fileID: 1326784210773731706}
+  - component: {fileID: 1208877319299875138}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1208877319299875138
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314307107000262562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.08, y: 0.5, z: 0}
 --- !u!1 &1314364147308266914
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,14 +102,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1308870813896300200}
-  - component: {fileID: 3661448970743726292}
   - component: {fileID: 8648699361126937371}
   - component: {fileID: 5226673407147319059}
   - component: {fileID: 1313792538512821225}
   - component: {fileID: 1313792538512821228}
   - component: {fileID: 1313792538512821229}
   - component: {fileID: 1007481266}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,19 +131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!65 &3661448970743726292
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314364147308266914}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!135 &8648699361126937371
 SphereCollider:
   m_ObjectHideFlags: 0
