@@ -7,12 +7,20 @@ public class GameManager : MonoBehaviour
 {
     public GameObject homePause;
     public GameObject wildForestPause;
+    public GameObject wildForestPopUp;
     public GameObject home;
-    public GameObject[] animals;
+
+    public GameObject[] animalsPrefabs;
+
+    public Transform animalSpawn;
 
     private bool gamePaused = false;
 
+    private bool animalTamed = false;
+    private string animalTamedName;
+
     private GameObject currentPause;
+    private GameObject currentPopUp;
 
     private static GameManager _instance;
 
@@ -37,6 +45,7 @@ public class GameManager : MonoBehaviour
 	{
         Cursor.visible = false;
         currentPause = homePause;
+        currentPopUp = wildForestPopUp;
 	}
 
 	private void Update()
@@ -68,10 +77,13 @@ public class GameManager : MonoBehaviour
 
     public void GoToWildForest()
 	{
+        animalTamed = false;
         home.SetActive(false);
         SceneManager.LoadScene("WildForest", LoadSceneMode.Additive);
         TogglePause();
         currentPause = wildForestPause;
+
+        HidePopUp();
 	}
 
     public void GoToHome()
@@ -80,5 +92,41 @@ public class GameManager : MonoBehaviour
         home.SetActive(true);
         TogglePause();
         currentPause = homePause;
+
+        if (animalTamed) InstantiateAnimal();
+        animalTamed = false;
+
+        HidePopUp();
+    }
+
+    public void ShowPopUp()
+    {
+        if (!gamePaused) TogglePause();
+        currentPause.SetActive(false);
+        currentPopUp.SetActive(true);
+    }
+
+    public void HidePopUp()
+    {
+        if (gamePaused) TogglePause();
+        currentPopUp.SetActive(false);
+    }
+
+    public void SetAnimalTamed(string name)
+    {
+        animalTamed = true;
+        animalTamedName = name;
+    }
+
+    public void InstantiateAnimal()
+    {
+        foreach (GameObject pf in animalsPrefabs)
+        {
+            if (animalTamedName.Contains(pf.name))
+            {
+                Instantiate(pf, home.transform).transform.position = animalSpawn.position;
+                break;
+            }
+        }
     }
 }

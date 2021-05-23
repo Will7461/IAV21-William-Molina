@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    public Transform cam;
+    private Transform cam;
 
-    void LateUpdate()
+	private void Start()
+	{
+		cam = GameObject.Find("Player").transform.GetChild(1);
+	}
+	void LateUpdate()
     {
         transform.LookAt(transform.position + cam.forward);
     }
