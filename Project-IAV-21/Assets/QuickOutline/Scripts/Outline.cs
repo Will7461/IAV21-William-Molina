@@ -274,4 +274,9 @@ public class Outline : MonoBehaviour {
         break;
     }
   }
+
+    public void setOutline(int value)
+	{
+        OutlineWidth = value;
+	}
 }

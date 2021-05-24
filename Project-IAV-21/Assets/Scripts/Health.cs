@@ -19,6 +19,17 @@ public class Health : MonoBehaviour
         healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
     }
 
+    public void healLife(int points)
+    {
+        int life = (int)Variables.Object(gameObject).Get("Life");
+        if(life < (int)Variables.Object(gameObject).Get("MaxLife"))
+		{
+            life += points;
+            Variables.Object(gameObject).Set("Life", life);
+            healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
+        }
+    }
+
     public void showHealthBar()
     {
         isBarActive = true;

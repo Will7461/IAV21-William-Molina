@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject wildForestPause;
     public GameObject wildForestPopUp;
     public GameObject home;
+    public GameObject playerHUD;
 
     public GameObject[] animalsPrefabs;
 
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void SetPause(bool p)
 	{
+        playerHUD.SetActive(!p);
         currentPause.SetActive(p);
         Cursor.lockState = p ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = p;
@@ -128,5 +131,12 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void setEKeyUIActionable(bool b)
+	{
+        Color color = playerHUD.transform.GetChild(1).GetComponent<Image>().color;
+        color.a = (b) ? 1f : 0.2f;
+        playerHUD.transform.GetChild(1).GetComponent<Image>().color = color;
     }
 }

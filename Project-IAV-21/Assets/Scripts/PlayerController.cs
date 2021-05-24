@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Player's gravity")]
     public float gravity = -9.81f;
     /// <summary>
+    /// Player's camera
+    /// </summary>
+    [Tooltip("Player's camera")]
+    public GameObject cam;
+    /// <summary>
     /// Player's push power to any rigidbody
     /// </summary>
     float pushPower = 8.0f;
@@ -70,7 +75,11 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Raycast distance
     /// </summary>
-    float raycastDistance = 10;
+    float raycastDistance = 6;
+    /// <summary>
+    /// Current item selected
+    /// </summary>
+    Transform selection;
 
     void Start()
     {
@@ -110,7 +119,30 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (selection != null)
+		{
+            GameManager.Instance.setEKeyUIActionable(false);
+            selection.GetComponent<Outline>().setOutline(0);
+            selection = null;
+		}
+
         RaycastHit hit;
+        if(Physics.Raycast(cam.transform.position , cam.transform.TransformDirection(Vector3.forward), out hit, raycastDistance, 1 << LayerMask.NameToLayer("Item"), QueryTriggerInteraction.Collide))
+		{
+            
+            Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Outline outLine = hit.transform.GetComponent<Outline>();
+            if (outLine != null)
+			{
+                GameManager.Instance.setEKeyUIActionable(true);
+                outLine.setOutline(10);
+                selection = hit.transform;
+			}
+        }
+		else
+		{
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward) * raycastDistance, Color.white);
+        }
 
 	}
 
