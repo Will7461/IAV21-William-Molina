@@ -108,6 +108,12 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+	private void FixedUpdate()
+	{
+        RaycastHit hit;
+
+	}
+
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
         Rigidbody body = hit.collider.attachedRigidbody;

@@ -16,7 +16,6 @@ public class Health : MonoBehaviour
         int life = (int)Variables.Object(gameObject).Get("Life");
         life -= dmg;
         Variables.Object(gameObject).Set("Life", life);
-        if(getHealthBarActive())
         healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
     }
 
