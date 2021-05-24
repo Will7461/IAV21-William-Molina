@@ -67,6 +67,10 @@ public class PlayerController : MonoBehaviour
     /// Current player's push power to any rigidbody
     /// </summary>
     float currentPushPower;
+    /// <summary>
+    /// Raycast distance
+    /// </summary>
+    float raycastDistance = 10;
 
     void Start()
     {
@@ -117,5 +121,21 @@ public class PlayerController : MonoBehaviour
 
         // Apply the push
         body.velocity = pushDir * currentPushPower;
+    }
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.GetComponent<Health>())
+		{
+            other.GetComponent<Health>().showHealthBar();
+        }
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+        if (other.GetComponent<Health>())
+        {
+            other.GetComponent<Health>().hideHealthBar();
+        }
     }
 }

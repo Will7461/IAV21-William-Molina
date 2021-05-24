@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
+using UnityEngine.Assertions;
 
 public class Health : MonoBehaviour
 {
-    public LifeSlider lifeSlider;
+    public GameObject healthBarCanvas;
+
+    private bool isBarActive = false;
 
     // Update is called once per frame
     public void takeDamage(int dmg)
@@ -13,6 +16,23 @@ public class Health : MonoBehaviour
         int life = (int)Variables.Object(gameObject).Get("Life");
         life -= dmg;
         Variables.Object(gameObject).Set("Life", life);
-        lifeSlider.UpdateUISlider();
+        if(getHealthBarActive())
+        healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
     }
+
+    public void showHealthBar()
+    {
+        isBarActive = true;
+        healthBarCanvas.SetActive(true);
+    }
+    public void hideHealthBar()
+    {
+        isBarActive = false;
+        healthBarCanvas.SetActive(false);
+    }
+
+    public bool getHealthBarActive()
+	{
+        return isBarActive;
+	}
 }
