@@ -15,6 +15,7 @@ public class SlotHandler : MonoBehaviour, IDropHandler
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             eventData.pointerDrag.GetComponent<DragHandler>().removeFromIndexInventory();
             eventData.pointerDrag.GetComponent<DragHandler>().addToIndexInventory(index);
+            eventData.pointerDrag.GetComponent<DragHandler>().setIndexAndLastPos(index, GetComponent<RectTransform>().anchoredPosition);
         }
     }
 

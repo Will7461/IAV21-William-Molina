@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
     
 public class DragHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
-	private Vector3 lastPos;
+	private Vector2 lastPos;
 
 	private int index;
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		lastPos = transform.position;
+		lastPos = GetComponent<RectTransform>().anchoredPosition;
 		GetComponent<CanvasGroup>().alpha = 0.6f;
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
 	}
@@ -30,9 +31,22 @@ public class DragHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 	{
 		
 	}
-	public void setToLastPos()
+	public void moveToLastPos()
 	{
-		transform.position = lastPos;
+		GetComponent<RectTransform>().anchoredPosition = lastPos;
+	}
+	public Vector2 getLastPos()
+	{
+		return lastPos;
+	}
+	public int getIndex()
+	{
+		return index;
+	}
+	public void setIndexAndLastPos(int i, Vector2 pos)
+	{
+		index = i;
+		lastPos = pos;
 	}
 	public void addToIndexInventory(int i)
 	{
@@ -50,7 +64,23 @@ public class DragHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 	{
 		if (eventData.pointerDrag != null)
 		{
-			eventData.pointerDrag.GetComponent<DragHandler>().setToLastPos();
+			int otherIndex = eventData.pointerDrag.GetComponent<DragHandler>().getIndex();
+			Vector2 otherPos = eventData.pointerDrag.GetComponent<DragHandler>().getLastPos();
+			string otherName = eventData.pointerDrag.name;
+
+			GameManager.Instance.addToInventory(index, otherName);
+			GameManager.Instance.addToInventory(otherIndex, gameObject.name);
+
+			GetComponent<RectTransform>().anchoredPosition = otherPos;
+			eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = lastPos;
+
+			eventData.pointerDrag.GetComponent<DragHandler>().setIndexAndLastPos(index, lastPos);
+			setIndexAndLastPos(otherIndex, otherPos);
 		}
+	}
+	public void wasInstantiatedAt(int i)
+	{
+		index = i;
+		lastPos = GetComponent<RectTransform>().anchoredPosition;
 	}
 }

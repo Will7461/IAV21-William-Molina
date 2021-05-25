@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Transform animalSpawn;
 
     private bool gamePaused = false;
+    private bool inventoryInUse = false;
 
     private bool animalTamed = false;
     private string animalTamedName;
@@ -59,14 +60,14 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) && !inventoryInUse)
 		{
             TogglePause();
         }
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (Input.GetKeyDown(KeyCode.Tab) && !gamePaused)
 		{
-            inventoryUI.SetActive(true);
-            UpdateUIInventory();
+            ToggleInventory();
+            if (inventoryInUse) UpdateUIInventory();   
 		}
     }
 
@@ -75,6 +76,20 @@ public class GameManager : MonoBehaviour
     {
         gamePaused = !gamePaused;
         SetPause(gamePaused);
+    }
+    public void ToggleInventory()
+    {
+        inventoryInUse = !inventoryInUse;
+        showInventory(inventoryInUse);
+    }
+
+    public void showInventory(bool p)
+    {
+        playerHUD.SetActive(!p);
+        inventoryUI.SetActive(p);
+        Cursor.lockState = p ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = p;
+        Time.timeScale = p ? 0 : 1;
     }
 
     public void SetPause(bool p)
@@ -187,10 +202,12 @@ public class GameManager : MonoBehaviour
                 if(index < itemsSlots.transform.childCount)
 				{
                     icon.GetComponent<RectTransform>().anchoredPosition = itemsSlots.transform.GetChild(index).GetComponent<RectTransform>().anchoredPosition;
+                    icon.GetComponent<DragHandler>().wasInstantiatedAt(index);
 				}
 				else
 				{
-                    icon.GetComponent<RectTransform>().anchoredPosition = itemsSlotsHB.transform.GetChild(index - itemsSlots.transform.childCount).GetComponent<RectTransform>().anchoredPosition;
+					icon.GetComponent<RectTransform>().anchoredPosition = itemsSlotsHB.transform.GetChild(index - itemsSlots.transform.childCount).GetComponent<RectTransform>().anchoredPosition;
+                    icon.GetComponent<DragHandler>().wasInstantiatedAt(index);
                 }
                 break;
             }

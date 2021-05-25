@@ -9,7 +9,7 @@ public class InventoryBGHandler : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag != null)
         {
-            eventData.pointerDrag.GetComponent<DragHandler>().setToLastPos();
+            eventData.pointerDrag.GetComponent<DragHandler>().moveToLastPos();
         }
     }
 }
