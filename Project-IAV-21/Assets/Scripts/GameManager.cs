@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryUI;
 
     public GameObject[] animalsPrefabs;
+    public GameObject[] foodPrefabs;
     public GameObject[] iconsPrefabs;
 
     public Transform animalSpawn;
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour
     public string[] inventory = new string[36];
     public GameObject itemsSlots;
     public GameObject itemsSlotsHB;
+    public GameObject hotBarItems;
+    public GameObject hotBarCursor;
+
+    private int hBCursorPosition;
 
     private static GameManager _instance;
 
@@ -67,7 +72,24 @@ public class GameManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Tab) && !gamePaused)
 		{
             ToggleInventory();
-            if (inventoryInUse) UpdateUIInventory();   
+            if (inventoryInUse) UpdateUIInventory();
+            else UpdateHotBar();
+		}
+
+        float scrollwheel = Input.GetAxis("Mouse ScrollWheel");
+        if (scrollwheel != 0 && !gamePaused && !inventoryInUse)
+		{
+			if (scrollwheel < 0)
+			{
+                hBCursorPosition++;
+                hBCursorPosition %= hotBarItems.transform.childCount;
+            }
+			else
+			{
+                hBCursorPosition--;
+                if (hBCursorPosition < 0) hBCursorPosition = hotBarItems.transform.childCount - 1;
+			}
+            hotBarCursor.transform.position = hotBarItems.transform.GetChild(hBCursorPosition).transform.position;
 		}
     }
 
@@ -160,18 +182,88 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    #endregion
+	#endregion
 
-    public void setEKeyUIActionable(bool b)
+	#region PlayerHUD
+    public GameObject InstantiateFood(string name)
+	{
+        foreach (GameObject gO in foodPrefabs)
+        {
+            if (name.Contains(gO.name))
+            {
+                if(currentPause == homePause)
+				{
+                    
+                    GameObject home = GameObject.Find("Home");
+                    Transform player = home.transform.Find("Player");
+                    return Instantiate(gO, new Vector3(0,0,0), Quaternion.identity, home.transform);
+                }
+                break;
+            }
+        }
+        return null;
+    }
+    public bool canDropItem(out string name)
+	{
+        if (!gamePaused && !inventoryInUse && inventory[itemsSlots.transform.childCount + hBCursorPosition] != "")
+        {
+            name = inventory[itemsSlots.transform.childCount + hBCursorPosition];
+            removeFromInventory(itemsSlots.transform.childCount + hBCursorPosition);
+            UpdateHotBar();
+            return true;
+        }
+        else
+        {
+            name = "";
+            return false;
+        }
+    }
+	public void setEKeyUIActionable(bool b)
 	{
         Color color = playerHUD.transform.GetChild(1).GetComponent<Image>().color;
         color.a = (b) ? 1f : 0.2f;
         playerHUD.transform.GetChild(1).GetComponent<Image>().color = color;
     }
-    #region Inventory
-    public void addToInventory(int index, string name)
+
+    public Sprite getItemIcon(string name)
+	{
+        Sprite s = null;
+
+		foreach (GameObject gO in iconsPrefabs)
+		{
+			if (name.Contains(gO.name))
+			{
+                s = gO.GetComponent<Image>().sprite;
+                break;
+			}
+		}
+
+        return s;
+	}
+
+    public void UpdateHotBar()
+	{
+        for(int i = 0; i < itemsSlotsHB.transform.childCount; i++)
+		{
+            string name = inventory[itemsSlots.transform.childCount + i];
+			if (name == "")
+			{
+                hotBarItems.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 0;
+            }
+			else
+			{
+                hotBarItems.transform.GetChild(i).GetComponent<Image>().sprite = getItemIcon(name);
+                hotBarItems.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 1;
+            }
+		}
+	}
+
+	#endregion
+	#region Inventory
+	public void addToInventory(int index, string name)
     {
         inventory[index] = name;
+        if (index >= itemsSlots.transform.childCount) UpdateHotBar();
     }
 
     public void removeFromInventory(int index)

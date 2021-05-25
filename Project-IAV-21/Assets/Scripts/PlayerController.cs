@@ -126,6 +126,13 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.setEKeyUIActionable(false);
             }
 		}
+        string itemDropped;
+		if (Input.GetKeyDown(KeyCode.Q) && GameManager.Instance.canDropItem(out itemDropped))
+		{
+            GameObject gO = GameManager.Instance.InstantiateFood(itemDropped);
+            gO.transform.position = cam.transform.position + cam.transform.forward;
+            gO.GetComponent<Rigidbody>().AddForce(cam.transform.forward * 5, ForceMode.Impulse);
+        }
     }
 
 	private void FixedUpdate()
