@@ -115,6 +115,11 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         //Apply gravity factor to the player
         controller.Move(velocity * Time.deltaTime);
+
+		if (Input.GetKeyDown(KeyCode.E) && selection != null)
+		{
+            Destroy(selection.gameObject);
+		}
     }
 
 	private void FixedUpdate()
