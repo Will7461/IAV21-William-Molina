@@ -118,7 +118,13 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.E) && selection != null)
 		{
-            Destroy(selection.gameObject);
+            int freeIndex = GameManager.Instance.freeInventorySlot();
+            if (freeIndex != -1)
+			{
+                GameManager.Instance.addToInventory(freeIndex, selection.name);
+                Destroy(selection.gameObject);
+                GameManager.Instance.setEKeyUIActionable(false);
+            }
 		}
     }
 
