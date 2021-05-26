@@ -193,10 +193,12 @@ public class GameManager : MonoBehaviour
             {
                 if(currentPause == homePause)
 				{
-                    
                     GameObject home = GameObject.Find("Home");
-                    Transform player = home.transform.Find("Player");
                     return Instantiate(gO, new Vector3(0,0,0), Quaternion.identity, home.transform);
+                }
+                else if(currentPause == wildForestPause)
+				{
+                    return Instantiate(gO, new Vector3(0, 0, 0), Quaternion.identity);
                 }
                 break;
             }
