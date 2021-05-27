@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
         if(life < (int)Variables.Object(gameObject).Get("MaxLife"))
 		{
             life += points;
+            if (life > (int)Variables.Object(gameObject).Get("MaxLife")) life = (int)Variables.Object(gameObject).Get("MaxLife");
             Variables.Object(gameObject).Set("Life", life);
             healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
         }
