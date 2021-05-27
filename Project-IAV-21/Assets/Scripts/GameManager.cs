@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject itemsSlotsHB;
     public GameObject hotBarItems;
     public GameObject hotBarCursor;
+    public GameObject itemHolded;
 
     private int hBCursorPosition;
 
@@ -63,6 +64,17 @@ public class GameManager : MonoBehaviour
         currentPopUp = wildForestPopUp;
 	}
 
+    public void UpdateItemHolded()
+	{
+        if (inventory[itemsSlots.transform.childCount + hBCursorPosition] == "")
+		{
+            itemHolded.GetComponent<CanvasGroup>().alpha = 0;
+            return;
+        }
+        itemHolded.GetComponent<Image>().sprite = hotBarItems.transform.GetChild(hBCursorPosition).GetComponent<Image>().sprite;
+        itemHolded.GetComponent<CanvasGroup>().alpha = 1;
+    }
+
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape) && !inventoryInUse)
@@ -90,6 +102,7 @@ public class GameManager : MonoBehaviour
                 if (hBCursorPosition < 0) hBCursorPosition = hotBarItems.transform.childCount - 1;
 			}
             hotBarCursor.transform.position = hotBarItems.transform.GetChild(hBCursorPosition).transform.position;
+            UpdateItemHolded();
 		}
     }
 
@@ -222,9 +235,9 @@ public class GameManager : MonoBehaviour
     }
 	public void setEKeyUIActionable(bool b)
 	{
-        Color color = playerHUD.transform.GetChild(1).GetComponent<Image>().color;
+        Color color = playerHUD.transform.GetChild(5).GetComponent<Image>().color;
         color.a = (b) ? 1f : 0.2f;
-        playerHUD.transform.GetChild(1).GetComponent<Image>().color = color;
+        playerHUD.transform.GetChild(5).GetComponent<Image>().color = color;
     }
 
     public Sprite getItemIcon(string name)
@@ -258,7 +271,8 @@ public class GameManager : MonoBehaviour
                 hotBarItems.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 1;
             }
 		}
-	}
+        UpdateItemHolded();
+    }
 
 	#endregion
 	#region Inventory
