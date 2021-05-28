@@ -153,6 +153,7 @@ MonoBehaviour:
   speed: 6.5
   jumpHeight: 2
   gravity: -23.544
+  cam: {fileID: 134316397543437397}
 --- !u!1 &134316397543437397
 GameObject:
   m_ObjectHideFlags: 0

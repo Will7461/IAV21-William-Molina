@@ -19,6 +19,7 @@ public class LifeSlider : MonoBehaviour
 
     public void UpdateUISlider()
     {
+        if(slider!=null)
         slider.value = (int)Variables.Object(gO).Get("Life");
     }
 }

@@ -148,7 +148,6 @@ public class PlayerController : MonoBehaviour
         if(Physics.Raycast(cam.transform.position , cam.transform.TransformDirection(Vector3.forward), out hit, raycastDistance, 1 << LayerMask.NameToLayer("Item"), QueryTriggerInteraction.Collide))
 		{
             
-            Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Outline outLine = hit.transform.GetComponent<Outline>();
             if (outLine != null)
 			{
