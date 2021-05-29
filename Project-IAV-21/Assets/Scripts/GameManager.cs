@@ -62,17 +62,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         currentPause = homePause;
         currentPopUp = wildForestPopUp;
-	}
 
-    public void UpdateItemHolded()
-	{
-        if (inventory[itemsSlots.transform.childCount + hBCursorPosition] == "")
-		{
-            itemHolded.GetComponent<CanvasGroup>().alpha = 0;
-            return;
-        }
-        itemHolded.GetComponent<Image>().sprite = hotBarItems.transform.GetChild(hBCursorPosition).GetComponent<Image>().sprite;
-        itemHolded.GetComponent<CanvasGroup>().alpha = 1;
+        StartCoroutine(RespawnFood());
     }
 
 	private void Update()
@@ -195,9 +186,52 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-	#endregion
 
-	#region PlayerHUD
+    public IEnumerator RespawnFood()
+	{
+		while (true)
+		{
+            GameObject foodSpawner = home.transform.Find("FoodSpawner").gameObject;
+
+            bool alreadyInstanced;
+            foreach (GameObject f in foodPrefabs)
+            {
+                alreadyInstanced = false;
+                foreach (Transform clone in foodSpawner.transform)
+                {
+                    if (clone.name.Contains(f.name))
+                    {
+                        alreadyInstanced = true;
+                        break;
+                    }
+                }
+
+                if (!alreadyInstanced)
+                {
+                    if (!home.activeSelf) continue;
+                    yield return new WaitForSeconds(0.5f);
+                    int randomX = Random.Range(-1 , 2);
+                    int randomZ = Random.Range(-1 , 2);
+                    Instantiate(f, foodSpawner.transform.position, Quaternion.identity, foodSpawner.transform).GetComponent<Rigidbody>().AddForce(new Vector3(randomX, -2f, randomZ),ForceMode.Impulse);
+                }
+            }
+            yield return new WaitForSeconds(3f);
+        }
+	}
+    #endregion
+
+    #region PlayerHUD
+    public void UpdateItemHolded()
+    {
+        if (inventory[itemsSlots.transform.childCount + hBCursorPosition] == "")
+        {
+            itemHolded.GetComponent<CanvasGroup>().alpha = 0;
+            return;
+        }
+        itemHolded.GetComponent<Image>().sprite = hotBarItems.transform.GetChild(hBCursorPosition).GetComponent<Image>().sprite;
+        itemHolded.GetComponent<CanvasGroup>().alpha = 1;
+    }
+
     public GameObject InstantiateFood(string name)
 	{
         foreach (GameObject gO in foodPrefabs)
