@@ -119,7 +119,6 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.E) && selection != null)
 		{
-            Debug.Log(selection.name);
 			if (selection.GetComponent<Food>())
 			{
                 int freeIndex = GameManager.Instance.freeInventorySlot();

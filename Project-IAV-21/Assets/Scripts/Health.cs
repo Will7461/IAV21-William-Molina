@@ -10,8 +10,7 @@ public class Health : MonoBehaviour
 
     private bool isBarActive = false;
 
-    // Update is called once per frame
-    public void takeDamage(int dmg)
+	public void takeDamage(int dmg)
     {
         int life = (int)Variables.Object(gameObject).Get("Life");
         life -= dmg;

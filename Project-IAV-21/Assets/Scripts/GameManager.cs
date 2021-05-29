@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Bolt;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject homePause;
     public GameObject wildForestPause;
+    public GameObject homePopUp;
     public GameObject wildForestPopUp;
     public GameObject home;
     public GameObject itemIcons;
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
 	{
         Cursor.visible = false;
         currentPause = homePause;
-        currentPopUp = wildForestPopUp;
+        currentPopUp = homePopUp;
 
         StartCoroutine(RespawnFood());
     }
@@ -134,12 +136,17 @@ public class GameManager : MonoBehaviour
 
     public void GoToWildForest()
     {
+		if (CheckFight())
+		{
+            ShowPopUp();
+            return;
+		}
         animalTamed = false;
         home.SetActive(false);
         SceneManager.LoadScene("WildForest", LoadSceneMode.Additive);
         TogglePause();
         currentPause = wildForestPause;
-
+        currentPopUp = wildForestPopUp;
         HidePopUp();
     }
 
@@ -149,6 +156,7 @@ public class GameManager : MonoBehaviour
         home.SetActive(true);
         TogglePause();
         currentPause = homePause;
+        currentPopUp = homePopUp;
 
         if (animalTamed) InstantiateAnimal();
         animalTamed = false;
@@ -218,6 +226,18 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
         }
 	}
+
+    public bool CheckFight()
+	{
+        foreach (Transform child in home.transform)
+        {
+			if (child.gameObject.GetComponent<Health>() && (bool)Variables.Object(child.gameObject).Get("Fighting") == true)
+			{
+                return true;
+			}
+        }
+        return false;
+    }
     #endregion
 
     #region PlayerHUD
