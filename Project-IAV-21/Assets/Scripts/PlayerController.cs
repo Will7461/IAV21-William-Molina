@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Bolt;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Raycast distance
     /// </summary>
-    float raycastDistance = 6;
+    float raycastDistance = 7;
     /// <summary>
     /// Current item selected
     /// </summary>
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         //Checks if player is on floor
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0) velocity.y = -2f;
+        if (isGrounded && velocity.y < 0) velocity.y = -10f;
 
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
@@ -118,13 +119,30 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.E) && selection != null)
 		{
-            int freeIndex = GameManager.Instance.freeInventorySlot();
-            if (freeIndex != -1)
+            Debug.Log(selection.name);
+			if (selection.GetComponent<Food>())
 			{
-                GameManager.Instance.addToInventory(freeIndex, selection.name);
-                Destroy(selection.gameObject);
-                GameManager.Instance.setEKeyUIActionable(false);
+                int freeIndex = GameManager.Instance.freeInventorySlot();
+                if (freeIndex != -1)
+                {
+                    GameManager.Instance.addToInventory(freeIndex, selection.name);
+                    Destroy(selection.gameObject);
+                    GameManager.Instance.setEKeyUIActionable(false);
+                }
             }
+            else if (selection.name == "Body")
+			{
+                GameObject animal = selection.parent.gameObject;
+                if((string)Variables.Object(animal).Get("State") == "Fighting")
+				{
+                    Variables.Object(animal).Set("State", "");
+				}
+                else if ((string)Variables.Object(animal).Get("State") == "Starving" && (bool)Variables.Object(animal).Get("Fighting"))
+				{
+                    Variables.Object(animal).Set("State", "");
+                }
+			}
+            
 		}
         string itemDropped;
 		if (Input.GetKeyDown(KeyCode.Q) && GameManager.Instance.canDropItem(out itemDropped))
@@ -147,7 +165,6 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position , cam.transform.TransformDirection(Vector3.forward), out hit, raycastDistance, 1 << LayerMask.NameToLayer("Item"), QueryTriggerInteraction.Collide))
 		{
-            
             Outline outLine = hit.transform.GetComponent<Outline>();
             if (outLine != null)
 			{
@@ -155,6 +172,16 @@ public class PlayerController : MonoBehaviour
                 outLine.setOutline(10);
                 selection = hit.transform;
 			}
+        }
+        else if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, raycastDistance, 1 << LayerMask.NameToLayer("Animal"), QueryTriggerInteraction.Collide))
+		{
+            Outline outLine = hit.transform.GetChild(0).GetComponent<Outline>();
+            if (outLine != null)
+            {
+                GameManager.Instance.setEKeyUIActionable(true);
+                outLine.setOutline(10);
+                selection = hit.transform.GetChild(0);
+            }
         }
 		else
 		{

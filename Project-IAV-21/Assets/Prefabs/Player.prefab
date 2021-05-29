@@ -47,7 +47,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134316397138096746}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -148,7 +148,7 @@ MonoBehaviour:
   groundDistance: 0.6
   groundMask:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 1536
   sprint: 10
   speed: 6.5
   jumpHeight: 2

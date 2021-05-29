@@ -129,6 +129,7 @@ MonoBehaviour:
   animals:
   - Chicken
   - Duck
+  - Pikachu
 --- !u!135 &7444833877706249417
 SphereCollider:
   m_ObjectHideFlags: 0

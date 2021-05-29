@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9123119773501143505}
   - component: {fileID: 9123119773501143504}
   - component: {fileID: 9137309621154435510}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Lion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 8
-  m_Acceleration: 20
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 1000
   m_StoppingDistance: 0.5
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Damage","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"MaxLife","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Fighting","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"BeingAttacked","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"DangerLevel","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"DecisionDice","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"State","value":{"$content":"Wandering","$type":"System.String"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Damage","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"MaxLife","value":{"$content":25,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":25,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Fighting","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"BeingAttacked","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"DangerLevel","value":{"$content":2,"$type":"System.Int32"},"$version":"A"},{"name":"DecisionDice","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"State","value":{"$content":"Wandering","$type":"System.String"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!114 &9123119773501143504
 MonoBehaviour:
@@ -145,7 +145,9 @@ GameObject:
   - component: {fileID: 9146320203314687687}
   - component: {fileID: 9136539290310597999}
   - component: {fileID: 3612581871721217172}
-  m_Layer: 0
+  - component: {fileID: 2536773629166953331}
+  - component: {fileID: 8657729958497972071}
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,6 +228,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9488813, y: 1.0498216, z: 1.0545685}
   m_Center: {x: -0.080761194, y: 0.5249108, z: -0.050738614}
+--- !u!114 &2536773629166953331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123408048616233211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.28773582, g: 0.37436152, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!135 &8657729958497972071
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123408048616233211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.65
+  m_Center: {x: -0.08153829, y: 0.6115355, z: -0.122307}
 --- !u!1001 &7476449916524045614
 PrefabInstance:
   m_ObjectHideFlags: 0

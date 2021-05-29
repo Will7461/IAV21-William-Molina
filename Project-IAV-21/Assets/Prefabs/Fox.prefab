@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1319248750267238710}
   - component: {fileID: 1326784210773731706}
   - component: {fileID: 1208877319299875138}
+  - component: {fileID: 6242920346438238868}
+  - component: {fileID: 6926317205723890112}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -93,6 +95,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: -0.08, y: 0.5, z: -0.08}
+--- !u!114 &6242920346438238868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314307107000262562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.28773582, g: 0.37436152, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!135 &6926317205723890112
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314307107000262562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.96
+  m_Center: {x: -0.07, y: 0.62, z: -0.15}
 --- !u!1 &1314364147308266914
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +141,7 @@ GameObject:
   - component: {fileID: 1313792538512821228}
   - component: {fileID: 1313792538512821229}
   - component: {fileID: 1007481266}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Fox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,8 +203,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 20
+  m_Speed: 7
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 1000
   m_StoppingDistance: 0.5
@@ -195,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Damage","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"MaxLife","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Fighting","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"BeingAttacked","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"DangerLevel","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"DecisionDice","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"State","value":{"$content":"Wandering","$type":"System.String"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Damage","value":{"$content":4,"$type":"System.Int32"},"$version":"A"},{"name":"MaxLife","value":{"$content":15,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":15,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Fighting","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"BeingAttacked","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"DangerLevel","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"DecisionDice","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"State","value":{"$content":"Wandering","$type":"System.String"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!114 &1313792538512821229
 MonoBehaviour:
@@ -351,12 +384,12 @@ PrefabInstance:
     - target: {fileID: 4543986231248807433, guid: 5afc117562b41e54c8cf02c6db8ba027,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4543986231248807433, guid: 5afc117562b41e54c8cf02c6db8ba027,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5085002127450673313, guid: 5afc117562b41e54c8cf02c6db8ba027,
         type: 3}

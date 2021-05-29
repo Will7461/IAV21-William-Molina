@@ -188,7 +188,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"TamingValue","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"TamingMinPossible","value":{"$content":2,"$type":"System.Int32"},"$version":"A"},{"name":"TamingMaxPossible","value":{"$content":4,"$type":"System.Int32"},"$version":"A"},{"name":"TamingSliderComponent","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"TamingValue","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"TamingMinPossible","value":{"$content":3,"$type":"System.Int32"},"$version":"A"},{"name":"TamingMaxPossible","value":{"$content":4,"$type":"System.Int32"},"$version":"A"},{"name":"TamingSliderComponent","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 4003690693659098670}
 --- !u!114 &1830597375304179936

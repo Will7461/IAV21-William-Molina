@@ -89,7 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4244836207894186274}
   - component: {fileID: 4502585483096071845}
-  m_Layer: 0
+  - component: {fileID: 858471369}
+  - component: {fileID: 2217508771569052657}
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +126,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5039197, y: 0.6922022, z: 0.6672225}
   m_Center: {x: -0.015773952, y: 0.23, z: -0.06}
+--- !u!114 &858471369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266363691847621768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.28773582, g: 0.37436152, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!135 &2217508771569052657
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266363691847621768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0.11, z: -0.06}
 --- !u!1 &7539827050383628466
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +172,7 @@ GameObject:
   - component: {fileID: 1059412942192156656}
   - component: {fileID: 1969744839726132782}
   - component: {fileID: 5690430038154567368}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cat2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,8 +234,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 20
+  m_Speed: 6
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 1000
   m_StoppingDistance: 0.5
@@ -226,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Damage","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"MaxLife","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":5,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Fighting","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"BeingAttacked","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"DangerLevel","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"DecisionDice","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"State","value":{"$content":"Wandering","$type":"System.String"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"Target","value":null,"$version":"A"},{"name":"Food","value":null,"$version":"A"},{"name":"Damage","value":{"$content":3,"$type":"System.Int32"},"$version":"A"},{"name":"MaxLife","value":{"$content":15,"$type":"System.Int32"},"$version":"A"},{"name":"Life","value":{"$content":15,"$type":"System.Int32"},"$version":"A"},{"name":"Alive","value":{"$content":true,"$type":"System.Boolean"},"$version":"A"},{"name":"Eating","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Fighting","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"BeingAttacked","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"DangerLevel","value":{"$content":1,"$type":"System.Int32"},"$version":"A"},{"name":"DecisionDice","value":{"$content":0,"$type":"System.Int32"},"$version":"A"},{"name":"State","value":{"$content":"Wandering","$type":"System.String"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!114 &1969744839726132782
 MonoBehaviour:

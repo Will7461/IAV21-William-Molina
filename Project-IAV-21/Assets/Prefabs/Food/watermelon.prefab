@@ -129,6 +129,7 @@ MonoBehaviour:
   - Fox
   - Cat1
   - Cat2
+  - Pikachu
 --- !u!135 &3488733265022737247
 SphereCollider:
   m_ObjectHideFlags: 0
