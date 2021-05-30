@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarCanvas: {fileID: 4909096742279834026}
+  xpBarCanvas: {fileID: 0}
 --- !u!1001 &6686211538863384322
 PrefabInstance:
   m_ObjectHideFlags: 0

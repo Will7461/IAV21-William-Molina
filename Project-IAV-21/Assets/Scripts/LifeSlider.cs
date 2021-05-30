@@ -13,7 +13,7 @@ public class LifeSlider : MonoBehaviour
     void Start()
     {
         slider = GetComponent<Slider>();
-        slider.maxValue = (int)Variables.Object(gO).Get("Life");
+        slider.maxValue = (int)Variables.Object(gO).Get("MaxLife");
         slider.value = slider.maxValue;
     }
 

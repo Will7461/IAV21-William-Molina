@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.E) && selection != null)
 		{
-			if (selection.GetComponent<Food>())
+            if (selection.GetComponent<Food>())
 			{
                 int freeIndex = GameManager.Instance.freeInventorySlot();
                 if (freeIndex != -1)
@@ -129,16 +129,19 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.setEKeyUIActionable(false);
                 }
             }
-            else if (selection.name == "Body")
+            else if (selection.name == "Body" && selection.parent.GetComponent<Health>())
 			{
                 GameObject animal = selection.parent.gameObject;
+                Health healthComponent = animal.GetComponent<Health>();
                 if((string)Variables.Object(animal).Get("State") == "Fighting")
 				{
                     Variables.Object(animal).Set("State", "");
+                    healthComponent.earnXP();
 				}
                 else if ((string)Variables.Object(animal).Get("State") == "Starving" && (bool)Variables.Object(animal).Get("Fighting"))
 				{
                     Variables.Object(animal).Set("State", "");
+                    healthComponent.earnXP();
                 }
 			}
             

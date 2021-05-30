@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarCanvas: {fileID: 6962767081658594966}
+  xpBarCanvas: {fileID: 0}
 --- !u!1 &1302390337770860820
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,12 +400,12 @@ PrefabInstance:
     - target: {fileID: 4543986231248807433, guid: 5afc117562b41e54c8cf02c6db8ba027,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4543986231248807433, guid: 5afc117562b41e54c8cf02c6db8ba027,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5085002127450673313, guid: 5afc117562b41e54c8cf02c6db8ba027,
         type: 3}

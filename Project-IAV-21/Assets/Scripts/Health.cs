@@ -7,6 +7,7 @@ using UnityEngine.Assertions;
 public class Health : MonoBehaviour
 {
     public GameObject healthBarCanvas;
+    public GameObject xpBarCanvas;
 
     private bool isBarActive = false;
 
@@ -28,6 +29,20 @@ public class Health : MonoBehaviour
             Variables.Object(gameObject).Set("Life", life);
             healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
         }
+    }
+
+    public void earnXP()
+    {
+        if ((int)Variables.Object(gameObject).Get("DangerLevel") == 0) return;
+        int xp = (int)Variables.Object(gameObject).Get("XP");
+        if (xp >= (int)Variables.Object(gameObject).Get("MaxXP"))
+		{
+            Variables.Object(gameObject).Set("GoodBoy", true);
+            return;
+        }
+        xp++;
+        Variables.Object(gameObject).Set("XP", xp);
+        xpBarCanvas.GetComponentInChildren<XPSlider>().UpdateUISlider();
     }
 
     public void showHealthBar()
