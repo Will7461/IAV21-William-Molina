@@ -143,7 +143,11 @@ public class PlayerController : MonoBehaviour
                     Variables.Object(animal).Set("State", "");
                     healthComponent.earnXP();
                 }
-			}
+                else if ((string)Variables.Object(animal).Get("State") == "Death")
+                {
+                    Destroy(animal);
+                }
+            }
             
 		}
         string itemDropped;
