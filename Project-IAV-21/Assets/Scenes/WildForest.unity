@@ -1505,13 +1505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animals:
   - {fileID: 2582123928365620963, guid: ad70fb98cb0e6084080b5b1567358481, type: 3}
-  - {fileID: 2714001255145178334, guid: cc454556979d32c4aae2ebb600f14369, type: 3}
-  - {fileID: 8251766856506963904, guid: 1633e89f9f640874aaf38660277096d4, type: 3}
-  - {fileID: 2737212070270983547, guid: 5562b996a22fffc48996bd8178253a34, type: 3}
-  - {fileID: 1246127402507358551, guid: fb5088139c9a8f146b6bea589ac704ac, type: 3}
-  - {fileID: 8410649090560316143, guid: 802e4610bb5daee4098850b4e9838143, type: 3}
-  - {fileID: 8453603360252884215, guid: d5de46b607a69e74aa3a9b636a986db0, type: 3}
-  - {fileID: 7143443088293123515, guid: 2ff39e955bd48994eba91c21d2e2d0d7, type: 3}
   spawnPoint: {fileID: 1430884449}
 --- !u!1001 &45892097
 PrefabInstance:
@@ -43216,6 +43209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MT_Terrain_L_a_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356237507539402404, guid: 4ab19744122861949a99f980e3042c9f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1356237507539402404, guid: 4ab19744122861949a99f980e3042c9f,
         type: 3}

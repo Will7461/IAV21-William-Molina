@@ -146,8 +146,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("WildForest", LoadSceneMode.Additive);
         TogglePause();
         currentPause = wildForestPause;
-        currentPopUp = wildForestPopUp;
+
         HidePopUp();
+        currentPopUp = wildForestPopUp;
     }
 
     public void GoToHome()
@@ -156,12 +157,12 @@ public class GameManager : MonoBehaviour
         home.SetActive(true);
         TogglePause();
         currentPause = homePause;
-        currentPopUp = homePopUp;
 
         if (animalTamed) InstantiateAnimal();
         animalTamed = false;
 
         HidePopUp();
+        currentPopUp = homePopUp;
     }
 
     public void ShowPopUp()
