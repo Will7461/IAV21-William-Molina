@@ -55,6 +55,11 @@ public class UIStateManager : MonoBehaviour
 				transform.GetChild(1).gameObject.SetActive(true);
 				transform.GetChild(1).gameObject.GetComponent<Image>().sprite = sprites[5];
 				break;
+			case "Loving":
+				transform.GetChild(0).gameObject.SetActive(true);
+				transform.GetChild(1).gameObject.SetActive(true);
+				transform.GetChild(1).gameObject.GetComponent<Image>().sprite = sprites[6];
+				break;
 		}
 	}
 }

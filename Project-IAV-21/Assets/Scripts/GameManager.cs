@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         TogglePause();
         currentPause = homePause;
 
-        if (animalTamed) InstantiateAnimal();
+        if (animalTamed) InstantiateAnimal(animalTamedName, animalSpawn.position);
         animalTamed = false;
 
         HidePopUp();
@@ -184,13 +184,13 @@ public class GameManager : MonoBehaviour
         animalTamedName = name;
     }
 
-    public void InstantiateAnimal()
+    public void InstantiateAnimal(string name, Vector3 pos)
     {
         foreach (GameObject pf in animalsPrefabs)
         {
-            if (animalTamedName.Contains(pf.name))
+            if (name.Contains(pf.name))
             {
-                Instantiate(pf, home.transform).transform.position = animalSpawn.position;
+                Instantiate(pf, home.transform).transform.position = pos;
                 break;
             }
         }
