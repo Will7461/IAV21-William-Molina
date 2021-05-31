@@ -9,8 +9,24 @@ public class Health : MonoBehaviour
     public GameObject healthBarCanvas;
     public GameObject xpBarCanvas;
 
+    public string sound;
+
     private bool isBarActive = false;
 
+	public void Start()
+	{
+        AudioSource myAudioSource = gameObject.GetComponent<AudioSource>();
+        AudioSource amAudioSource = AudioManager.instance.GetAudioSource(sound);
+        myAudioSource.name = amAudioSource.name;
+        myAudioSource.clip = amAudioSource.clip;
+        myAudioSource.volume = amAudioSource.volume;
+        myAudioSource.pitch = amAudioSource.pitch;
+        myAudioSource.loop = amAudioSource.loop;
+	}
+    public void PlaySound()
+	{
+        GetComponent<AudioSource>().Play();
+	}
 	public void takeDamage(int dmg)
     {
         int life = (int)Variables.Object(gameObject).Get("Life");
@@ -41,6 +57,7 @@ public class Health : MonoBehaviour
             Variables.Object(gameObject).Set("GoodBoy", true);
             return;
         }
+        PlaySound();
         xp++;
         Variables.Object(gameObject).Set("XP", xp);
         xpBarCanvas.GetComponentInChildren<XPSlider>().UpdateUISlider();
