@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Bolt;
-
+/// <summary>
+/// Class for slider managment based on Life values
+/// </summary>
 public class LifeSlider : MonoBehaviour
 {
     private Slider slider;

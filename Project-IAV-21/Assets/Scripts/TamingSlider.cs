@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Bolt;
-
+/// <summary>
+/// Slider managment based on taming value
+/// </summary>
 public class TamingSlider : MonoBehaviour
 {
     private Slider slider;

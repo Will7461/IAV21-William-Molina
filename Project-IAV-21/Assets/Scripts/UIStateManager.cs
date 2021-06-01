@@ -14,7 +14,9 @@ public class UIStateManager : MonoBehaviour
 	{
 		updateUIState();
 	}
-
+	/// <summary>
+	/// We update the icon that represents the state of an animal
+	/// </summary>
 	public void updateUIState()
 	{
 		string state = (string)Variables.Object(gO).Get("State");

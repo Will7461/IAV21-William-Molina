@@ -12,7 +12,9 @@ public class WildForestSceneManager : MonoBehaviour
 
     private GameObject randomAnimal;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// We rotate randomly the player (quick trick so we dont have to move animal spawn position) and spawn a random wild animal from the prefabs list
+    /// </summary>
     void Start()
     {
         int randomIndex = Random.Range(0,animals.Length);

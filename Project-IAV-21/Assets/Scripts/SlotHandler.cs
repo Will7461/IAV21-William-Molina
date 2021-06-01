@@ -8,6 +8,10 @@ using UnityEngine.EventSystems;
 public class SlotHandler : MonoBehaviour, IDropHandler
 {
     public int index;
+    /// <summary>
+    /// If a sprite its dropped at a slot, set its attributes
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag != null)

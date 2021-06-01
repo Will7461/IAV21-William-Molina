@@ -116,9 +116,10 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         //Apply gravity factor to the player
         controller.Move(velocity * Time.deltaTime);
-
+        // Once an item is selected we can interact with E key
 		if (Input.GetKeyDown(KeyCode.E) && selection != null)
 		{
+            // If its a food item we check if there is inventory space, in that case we save the item in the inventory
             if (selection.GetComponent<Food>())
 			{
                 int freeIndex = GameManager.Instance.freeInventorySlot();
@@ -129,8 +130,9 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.setEKeyUIActionable(false);
                 }
             }
-            else if (selection.name == "Body" && selection.parent.GetComponent<Health>())
+            else if (selection.name == "Body" && selection.parent.GetComponent<Health>()) 
 			{
+                // If its a Body object and has Health component (must be an animal), we stop its State in case it is attacking or we delete its body in case it is death
                 GameObject animal = selection.parent.gameObject;
                 Health healthComponent = animal.GetComponent<Health>();
                 if((string)Variables.Object(animal).Get("State") == "Fighting")
@@ -150,6 +152,7 @@ public class PlayerController : MonoBehaviour
             }
             
 		}
+        // We drop an item with Q key
         string itemDropped;
 		if (Input.GetKeyDown(KeyCode.Q) && GameManager.Instance.canDropItem(out itemDropped))
 		{
@@ -167,7 +170,7 @@ public class PlayerController : MonoBehaviour
             selection.GetComponent<Outline>().setOutline(0);
             selection = null;
 		}
-
+        // Raycast for selection of items in scene
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position , cam.transform.TransformDirection(Vector3.forward), out hit, raycastDistance, 1 << LayerMask.NameToLayer("Item"), QueryTriggerInteraction.Collide))
 		{
@@ -195,7 +198,10 @@ public class PlayerController : MonoBehaviour
         }
 
 	}
-
+    /// <summary>
+    /// We simulate colisions at controller hits
+    /// </summary>
+    /// <param name="hit"></param>
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
         Rigidbody body = hit.collider.attachedRigidbody;
@@ -210,7 +216,10 @@ public class PlayerController : MonoBehaviour
         // Apply the push
         body.velocity = pushDir * currentPushPower;
     }
-
+    /// <summary>
+    /// We show health bar of animals
+    /// </summary>
+    /// <param name="other"></param>
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.GetComponent<Health>())
@@ -218,7 +227,10 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<Health>().showHealthBar();
         }
 	}
-
+    /// <summary>
+    /// We hide health bar of animals
+    /// </summary>
+    /// <param name="other"></param>
 	private void OnTriggerExit(Collider other)
 	{
         if (other.GetComponent<Health>())

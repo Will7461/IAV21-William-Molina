@@ -4,32 +4,45 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
     
-public class DragHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+/// <summary>
+/// Drag handler of a dragable sprite
+/// </summary>
+public class DragHandler : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
+	/// <summary>
+	/// Where the sprite has been taken
+	/// </summary>
 	private Vector2 lastPos;
-
+	/// <summary>
+	/// Inventory index to which this sprite belongs
+	/// </summary>
 	private int index;
+	/// <summary>
+	/// Save last position to use in case we drop the sprite in a incorrect position, set lower alpha and avoid blocking raycast
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		lastPos = GetComponent<RectTransform>().anchoredPosition;
 		GetComponent<CanvasGroup>().alpha = 0.6f;
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
 	}
-
+	/// <summary>
+	/// Move the sprite following the mouse cursor
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnDrag(PointerEventData eventData)
 	{
 		transform.position = Input.mousePosition;
 	}
-
+	/// <summary>
+	/// Return the original alpha value and the interaction with raycasts
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		GetComponent<CanvasGroup>().alpha = 1f;
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
-	}
-
-	public void OnPointerDown(PointerEventData eventData)
-	{
-		
 	}
 	public void moveToLastPos()
 	{
@@ -59,7 +72,10 @@ public class DragHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 		GameManager.Instance.removeFromInventory(index);
 		index = -1;
 	}
-
+	/// <summary>
+	/// If we drop on another sprite, we switch positions
+	/// </summary>
+	/// <param name="eventData"></param>
 	public void OnDrop(PointerEventData eventData)
 	{
 		if (eventData.pointerDrag != null)

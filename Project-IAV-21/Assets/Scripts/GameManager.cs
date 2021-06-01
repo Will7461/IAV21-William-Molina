@@ -7,19 +7,39 @@ using Bolt;
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// Canvas gameobjects for pause menus
+    /// </summary>
     public GameObject homePause;
     public GameObject wildForestPause;
+    /// <summary>
+    /// Canvas gameobjects for PopUps
+    /// </summary>
     public GameObject homePopUp;
     public GameObject wildForestPopUp;
+    /// <summary>
+    /// Parent of every object that belong to the main scene
+    /// </summary>
     public GameObject home;
+    /// <summary>
+    /// Parent of the instantiated icons
+    /// </summary>
     public GameObject itemIcons;
+    /// <summary>
+    /// Canvas gameobject for player HUD
+    /// </summary>
     public GameObject playerHUD;
+    /// <summary>
+    /// Canvas gameobject for inventory
+    /// </summary>
     public GameObject inventoryUI;
 
     public GameObject[] animalsPrefabs;
     public GameObject[] foodPrefabs;
     public GameObject[] iconsPrefabs;
-
+    /// <summary>
+    /// Point where every animal spawn once its tamed
+    /// </summary>
     public Transform animalSpawn;
 
     private bool gamePaused = false;
@@ -30,12 +50,17 @@ public class GameManager : MonoBehaviour
 
     private GameObject currentPause;
     private GameObject currentPopUp;
-
+    /// <summary>
+    /// Inventory logic array
+    /// </summary>
     public string[] inventory = new string[36];
     public GameObject itemsSlots;
     public GameObject itemsSlotsHB;
     public GameObject hotBarItems;
     public GameObject hotBarCursor;
+    /// <summary>
+    /// Represents the item we currently hold in hand
+    /// </summary>
     public GameObject itemHolded;
 
     private int hBCursorPosition;
@@ -70,17 +95,19 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
+        // Pause
 		if (Input.GetKeyDown(KeyCode.Escape) && !inventoryInUse)
 		{
             TogglePause();
         }
+        // Inventory
 		if (Input.GetKeyDown(KeyCode.Tab) && !gamePaused)
 		{
             ToggleInventory();
             if (inventoryInUse) UpdateUIInventory();
             else UpdateHotBar();
 		}
-
+        // HotBar
         float scrollwheel = Input.GetAxis("Mouse ScrollWheel");
         if (scrollwheel != 0 && !gamePaused && !inventoryInUse)
 		{
@@ -133,7 +160,9 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-
+    /// <summary>
+    /// We travel to the wild forest by clicking the Explore button at pause menu
+    /// </summary>
     public void GoToWildForest()
     {
 		if (CheckFight())
@@ -150,7 +179,9 @@ public class GameManager : MonoBehaviour
         HidePopUp();
         currentPopUp = wildForestPopUp;
     }
-
+    /// <summary>
+    /// We travel to home by returning from WildForest
+    /// </summary>
     public void GoToHome()
     {
         SceneManager.UnloadSceneAsync("WildForest");
@@ -195,7 +226,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// We check every 3 seconds if the player has taken any food, so we respawn it
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator RespawnFood()
 	{
 		while (true)
@@ -227,7 +261,10 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
         }
 	}
-
+    /// <summary>
+    /// Auxiliar method to check if there are any animal fighting at home
+    /// </summary>
+    /// <returns></returns>
     public bool CheckFight()
 	{
         foreach (Transform child in home.transform)
@@ -330,6 +367,7 @@ public class GameManager : MonoBehaviour
     }
 
 	#endregion
+
 	#region Inventory
 	public void addToInventory(int index, string name)
     {

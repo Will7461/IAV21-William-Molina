@@ -4,7 +4,11 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+	/// <summary>
+	/// Sound's array
+	/// </summary>
+	[Tooltip("Sound's array")]
+	public Sound[] sounds;
 
 	public static AudioManager instance;
 
@@ -19,7 +23,7 @@ public class AudioManager : MonoBehaviour
 		}
 
 		DontDestroyOnLoad(gameObject);
-
+		// Set every Sound attribute
 	    foreach(Sound s in sounds)
 		{
             s.source = gameObject.AddComponent<AudioSource>();
@@ -30,11 +34,18 @@ public class AudioManager : MonoBehaviour
 			s.source.loop = s.loop;
 		}
 	}
+	/// <summary>
+	/// Music start
+	/// </summary>
 	void Start()
     {
         Play("Theme");
     }
 
+	/// <summary>
+	/// Play a sound by name
+	/// </summary>
+	/// <param name="name">name of a sound</param>
 	public void Play(string name)
 	{
 		Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -45,7 +56,11 @@ public class AudioManager : MonoBehaviour
 		}
 		s.source.Play();
 	}
-
+	/// <summary>
+	/// Get an AudioSource by name
+	/// </summary>
+	/// <param name="name">name of a sound</param>
+	/// <returns>AudioSource of a name sound</returns>
 	public AudioSource GetAudioSource(string name)
 	{
 		Sound s = Array.Find(sounds, sound => sound.name == name);

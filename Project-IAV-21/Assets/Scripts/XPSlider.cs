@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Bolt;
-
+/// <summary>
+/// Class for slider managment based on xp value
+/// </summary>
 public class XPSlider : MonoBehaviour
 {
     private Slider slider;
 
     public GameObject gO;
-    // Start is called before the first frame update
+
     void Start()
     {
         slider = GetComponent<Slider>();

@@ -1,6 +1,9 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 
+/// <summary>
+/// Class for sound instances managment
+/// </summary>
 [System.Serializable]
 public class Sound
 {

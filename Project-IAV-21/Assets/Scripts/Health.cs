@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
 using UnityEngine.Assertions;
-
+/// <summary>
+/// Class to health and animal managment
+/// </summary>
 public class Health : MonoBehaviour
 {
     public GameObject healthBarCanvas;
@@ -13,11 +15,13 @@ public class Health : MonoBehaviour
 
     private bool isBarActive = false;
 
+    /// <summary>
+    /// We set the animal AudioSource component based on AudioManager information
+    /// </summary>
 	public void Start()
 	{
         AudioSource myAudioSource = gameObject.GetComponent<AudioSource>();
         AudioSource amAudioSource = AudioManager.instance.GetAudioSource(sound);
-        myAudioSource.name = amAudioSource.name;
         myAudioSource.clip = amAudioSource.clip;
         myAudioSource.volume = amAudioSource.volume;
         myAudioSource.pitch = amAudioSource.pitch;
@@ -27,6 +31,10 @@ public class Health : MonoBehaviour
 	{
         GetComponent<AudioSource>().Play();
 	}
+    /// <summary>
+    /// Modify the life variable, substract dmg
+    /// </summary>
+    /// <param name="dmg">damage received</param>
 	public void takeDamage(int dmg)
     {
         int life = (int)Variables.Object(gameObject).Get("Life");
@@ -35,7 +43,10 @@ public class Health : MonoBehaviour
         Variables.Object(gameObject).Set("Life", life);
         healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
     }
-
+    /// <summary>
+    /// Modify the life variable, add points
+    /// </summary>
+    /// <param name="points">points to heal</param>
     public void healLife(int points)
     {
         int life = (int)Variables.Object(gameObject).Get("Life");
@@ -47,7 +58,9 @@ public class Health : MonoBehaviour
             healthBarCanvas.GetComponentInChildren<LifeSlider>().UpdateUISlider();
         }
     }
-
+    /// <summary>
+    /// Method to earn experience
+    /// </summary>
     public void earnXP()
     {
         if ((int)Variables.Object(gameObject).Get("DangerLevel") == 0) return;

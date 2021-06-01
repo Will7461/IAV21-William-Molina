@@ -10,13 +10,17 @@ public class MouseLook : MonoBehaviour
 
     private float xRotation = 0f;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// We lock mouse cursor on camera movement
+    /// </summary>
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// First person camera movement
+    /// </summary>
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
