@@ -1,0 +1,15 @@
+IAV Proyecto Final
+
+William Molina Cumba
+
+Enlace gitHub: https://github.com/Will7461/IAV21-William-Molina
+
+Video demo: https://drive.google.com/file/d/1SXYW90SB00EwjEj-1DP_cQei4oAopQFV/view?usp=sharing
+
+El proyecto consiste en implementar el comportamiento de animales que conviven en un refugio. Estos animales se encuentran en diferentes islas y deben ser rescatados por el jugador para llevarlos al refugio. 
+Una vez dentro, interactúan con otros animales para realizar distintas acciones, pero la acción principal consiste en el enfrentamiento de estos. 
+Si un animal es hostil por naturaleza, buscara un enfrentamiento con otro animal de su mismo o menor nivel de peligrosidad. Si un animal busca alimento y decide que quiere cazar, buscará un animal con menor nivel de peligrosidad para iniciar un enfrentamiento y poder devorarlo.
+De la misma forma, los animales más débiles y pacíficos huirán de su cazador para evitar el enfrentamiento.
+Por último, para poder domesticar a los animales, se deberá alimentarlos con la comida correcta hasta ganarse su confianza y solo entonces se podrán llevar al refugio.
+
+Para el proyecto se ha usado la herramienta Bolt y scripting en C#
